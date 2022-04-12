@@ -1,0 +1,27 @@
+
+version: '3.6'
+services:
+  gocqhttp:
+    container_name: gocqhttp
+    image: zxlt/gocqhttp:v1
+    restart: always
+    volumes:
+      - ./gocqhttp_bk/:/data
+    depends_on:
+      - xkbot
+    networks:
+      - qq
+  xkbot:
+    container_name: xkbot
+    image: zxlt/xkbot:v1
+    restart: always
+    volumes:
+      - ./xkbot_s/config.json:/app/config.json
+    networks:
+      - qq
+    
+networks:
+  qq:
+    external: true
+
+
